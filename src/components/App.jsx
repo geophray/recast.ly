@@ -1,23 +1,33 @@
 import exampleVideoData from '../data/exampleVideoData.js';
 import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
-var App = () => (
-  <div>
-    <nav className="navbar">
-      <div className="col-md-6 offset-md-3">
-        <div><h5><em>search</em> This is where the view goes.</h5></div>
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      done: true
+    };
+  }
+  render() {
+    return (
+      <div>
+        <nav className="navbar">
+          <div className="col-md-6 offset-md-3">
+            <div><h5><em>search</em> This is where the view goes.</h5></div>
+          </div>
+        </nav>
+        <div className="row">
+          <div className="col-md-7">
+            <VideoPlayer video={exampleVideoData[0]} />
+          </div>
+          <div className="col-md-5">
+            <VideoList videos={exampleVideoData} />
+          </div>
+        </div>
       </div>
-    </nav>
-    <div className="row">
-      <div className="col-md-7">
-        <VideoPlayer video={exampleVideoData[0]} />
-      </div>
-      <div className="col-md-5">
-        <VideoList videos={exampleVideoData} />
-      </div>
-    </div>
-  </div>
-);
+    );
+  }
+}
 
 ReactDOM.render(<App />, document.getElementById('app'));
 // In the ES6 spec, files are "modules" and do not share a top-level scope
