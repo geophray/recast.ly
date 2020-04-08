@@ -9,11 +9,30 @@ class App extends React.Component {
       currentVideo: exampleVideoData[0]
     };
   }
+
+  componentDidMount() {
+    this.getYouTubeVideos('nate bargatze');
+  }
+
+  getYouTubeVideos(query) {
+    var options = {
+      key: this.props.API_KEY,
+      query: query
+    };
+    this.props.searchYouTube(options, (videos) => {
+      this.setState({
+        videoList: videos,
+        currentVideo: videos[0]
+      });
+    });
+  }
+
   handleClick(video) {
     this.setState({
       currentVideo: video
     });
   }
+
   render() {
     return (
       <div>
